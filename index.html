@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muskaan Jain — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink-light: #fce8f0;
+    --pink-mid: #f4a7c3;
+    --pink-deep: #e07aa0;
+    --cream: #fff8f2;
+    --dark: #1a1a1a;
+    --muted: #7a6a72;
+    --green-accent: #2d5a3d;
+    --warm-white: #fffaf7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5%;
+    background: rgba(252,232,240,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(224,122,160,0.2);
+  }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--dark);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--pink-deep); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 5% 80px;
+    background: var(--pink-light);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(244,167,195,0.4) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(224,122,160,0.2) 0%, transparent 50%);
+  }
+  .hero-eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--pink-deep); font-weight: 500;
+    margin-bottom: 20px; position: relative;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 1.05;
+    font-weight: 700;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--pink-deep);
+  }
+  .hero-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--muted); font-weight: 400;
+    margin-top: 24px; max-width: 480px;
+    line-height: 1.7; position: relative;
+  }
+  .hero-website-img {
+    margin-top: 56px;
+    width: min(85%, 480px);
+    border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(224,122,160,0.25);
+    position: relative;
+  }
+  .hero-cta {
+    margin-top: 48px; display: flex; gap: 16px; justify-content: center;
+    position: relative;
+  }
+  .btn-primary, .btn-outline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500; font-size: 0.85rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 14px 32px; border-radius: 50px;
+    cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary {
+    background: var(--dark); color: #fff; border: 2px solid var(--dark);
+  }
+  .btn-primary:hover { background: var(--pink-deep); border-color: var(--pink-deep); }
+  .btn-outline {
+    background: transparent; color: var(--dark); border: 2px solid var(--dark);
+  }
+  .btn-outline:hover { background: var(--dark); color: #fff; }
+
+  /* SECTION COMMON */
+  section { padding: 100px 5%; }
+  .section-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--pink-deep); font-weight: 500; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15; font-weight: 700;
+    margin-bottom: 32px;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--warm-white);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img {
+    width: 100%; border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(224,122,160,0.2);
+  }
+  .about-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--pink-deep); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.75rem; font-weight: 500;
+    padding: 12px 20px; border-radius: 12px;
+    letter-spacing: 0.05em;
+  }
+  .about-text p {
+    font-size: 1rem; line-height: 1.85; color: #444;
+    margin-bottom: 20px;
+  }
+  .work-exp {
+    margin-top: 36px;
+    background: var(--pink-light);
+    border-radius: 16px; padding: 28px;
+  }
+  .work-exp h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--pink-deep); margin-bottom: 16px;
+  }
+  .work-item {
+    font-size: 0.9rem; color: #333; padding: 8px 0;
+    border-bottom: 1px dashed rgba(224,122,160,0.3);
+  }
+  .work-item:last-child { border-bottom: none; }
+  .work-item strong { color: var(--dark); }
+
+  /* SKILLS */
+  #skills {
+    background: var(--pink-light);
+    text-align: center;
+  }
+  .skills-img {
+    width: min(100%, 680px);
+    border-radius: 20px;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 24px 70px rgba(224,122,160,0.2);
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--warm-white); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px; margin-top: 56px;
+  }
+  .project-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none; color: inherit;
+    display: block;
+  }
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(224,122,160,0.25);
+  }
+  .project-thumb {
+    width: 100%; aspect-ratio: 4/3;
+    object-fit: cover; object-position: top;
+    display: block;
+  }
+  .project-info {
+    padding: 24px 28px 28px;
+  }
+  .project-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--pink-deep); margin-bottom: 8px;
+  }
+  .project-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-weight: 700; margin-bottom: 8px;
+  }
+  .project-desc {
+    font-size: 0.88rem; color: var(--muted); line-height: 1.65;
+  }
+
+  /* PROJECT DETAIL PAGES */
+  .project-page { display: none; }
+  .project-page.active { display: block; }
+  .project-hero {
+    padding: 140px 5% 80px;
+    background: var(--pink-light);
+    text-align: center;
+  }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--dark); text-decoration: none;
+    margin-bottom: 48px; cursor: pointer;
+    border: none; background: none; padding: 0;
+  }
+  .back-btn:hover { color: var(--pink-deep); }
+  .project-full-img {
+    width: min(100%, 720px);
+    border-radius: 20px;
+    margin: 56px auto 0;
+    display: block;
+    box-shadow: 0 30px 80px rgba(224,122,160,0.22);
+  }
+
+  /* SKILLS PAGE */
+  .skills-page { display: none; }
+  .skills-page.active { display: block; }
+
+  /* CONTACT / FOOTER */
+  footer {
+    background: var(--dark); color: #fff;
+    padding: 80px 5%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  footer h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.15;
+  }
+  footer h2 em { color: var(--pink-mid); font-style: italic; }
+  .footer-links { display: flex; flex-direction: column; gap: 14px; }
+  .footer-links a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 0.92rem; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--pink-mid); }
+  .footer-bottom {
+    background: #111; padding: 20px 5%;
+    text-align: center;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  /* PAGE ROUTING */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    #about { grid-template-columns: 1fr; gap: 40px; }
+    footer { grid-template-columns: 1fr; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo" onclick="showPage('home')">MJ</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home'); scrollToSection('about')">About</a></li>
+    <li><a href="#" onclick="showPage('skills-page')">Skills</a></li>
+    <li><a href="#" onclick="showPage('home'); scrollToSection('projects')">Projects</a></li>
+    <li><a href="#" onclick="showPage('home'); scrollToSection('contact')">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ========== HOME PAGE ========== -->
+<div id="home" class="page active">
+
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <p class="hero-eyebrow">Product Design · Visual Communication · Branding</p>
+    <h1 class="hero-title">Muskaan<br><em>Jain.</em></h1>
+    <p class="hero-subtitle">Every project is a dialogue between the user, the world, and myself — every design decision is how they balance them all.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary" onclick="scrollToSection('projects')">View Projects</a>
+      <a href="#about" class="btn-outline" onclick="scrollToSection('about')">About Me</a>
+    </div>
+    <img src="website_layout.png" alt="Portfolio Preview" class="hero-website-img">
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Product Design</span><span class="dot">✦</span>
+      <span>Visual Communication</span><span class="dot">✦</span>
+      <span>Branding</span><span class="dot">✦</span>
+      <span>Illustration</span><span class="dot">✦</span>
+      <span>Prototyping</span><span class="dot">✦</span>
+      <span>UX Research</span><span class="dot">✦</span>
+      <span>Packaging</span><span class="dot">✦</span>
+      <span>Sustainable Design</span><span class="dot">✦</span>
+      <span>Product Design</span><span class="dot">✦</span>
+      <span>Visual Communication</span><span class="dot">✦</span>
+      <span>Branding</span><span class="dot">✦</span>
+      <span>Illustration</span><span class="dot">✦</span>
+      <span>Prototyping</span><span class="dot">✦</span>
+      <span>UX Research</span><span class="dot">✦</span>
+      <span>Packaging</span><span class="dot">✦</span>
+      <span>Sustainable Design</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-img-wrap reveal-left">
+      <img src="website_layout.png" alt="Muskaan Jain" class="about-img">
+      <div class="about-badge">3rd Yr · Product Design</div>
+    </div>
+    <div class="about-text reveal-right">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">Hi, I'm <em style="font-style:italic; color:var(--pink-deep)">Muskaan.</em></h2>
+      <p>I am Muskaan Jain, pursuing product design and currently in 3rd year. I have always been a creative head since childhood, and I love making and exploring cultures, traditions, history, stories, emotions related to places, people, beliefs and self things.</p>
+      <p>Being a highly sensitive person, I have an ability to read between lines, notice minute details and emotions. I love making people feel special — and that gives me a creative edge of being highly intentional.</p>
+      <div class="work-exp">
+        <h4>Work Experience</h4>
+        <div class="work-item"><strong>Anand Jain & Associates</strong> — Interior & assistant role</div>
+        <div class="work-item"><strong>Purple Spark Studio</strong> — Design firm</div>
+        <div class="work-item"><strong>Gaushakti</strong> — Start-up company</div>
+        <div class="work-item"><strong>Ethereal</strong> — Graphics & illustrations start-up</div>
+        <div class="work-item"><strong>Freelancing</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS PREVIEW -->
+  <section id="skills" style="background:var(--pink-light); text-align:center;">
+    <p class="section-label" style="text-align:center;">What I Work With</p>
+    <h2 class="section-title" style="text-align:center;">Skills</h2>
+    <img src="skills.png" alt="Skills" class="skills-img reveal">
+    <div style="margin-top:40px;">
+      <a href="#" class="btn-primary" onclick="showPage('skills-page')">See Full Skills Page</a>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label reveal">Selected Work</p>
+    <h2 class="section-title reveal">Projects</h2>
+    <div class="projects-grid">
+
+      <a class="project-card" href="#" onclick="showPage('project01')">
+        <img src="project_01.png" alt="Project 01" class="project-thumb">
+        <div class="project-info">
+          <p class="project-num">Project 01</p>
+          <h3 class="project-name">Waou — Bespoke Dog Accessory Brand</h3>
+          <p class="project-desc">A luxury bespoke brand designed for dogs and their owners, blending emotional design with functionality.</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="#" onclick="showPage('project02')">
+        <img src="project_02_.png" alt="Project 02" class="project-thumb">
+        <div class="project-info">
+          <p class="project-num">Project 02</p>
+          <h3 class="project-name">Re-Kami — Sustainable Packaging</h3>
+          <p class="project-desc">A step towards sustainable packaging — handcrafted recycled paper packaging made to order.</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="#" onclick="showPage('project03')">
+        <img src="project_03.png" alt="Project 03" class="project-thumb">
+        <div class="project-info">
+          <p class="project-num">Project 03</p>
+          <h3 class="project-name">Kitsy First Aid Kits</h3>
+          <p class="project-desc">Redefining emergency readiness — a kid-first aid kit designed for clarity, speed, and confidence.</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="#" onclick="showPage('project04')">
+        <img src="project_04_.png" alt="Project 04" class="project-thumb">
+        <div class="project-info">
+          <p class="project-num">Project 04</p>
+          <h3 class="project-name">Sitting & Spacing Issues — Local Trains</h3>
+          <p class="project-desc">A research paper identifying spatial needs and human-centered design interventions to make local trains accessible for elderly passengers.</p>
+        </div>
+      </a>
+
+      <a class="project-card" href="#" onclick="showPage('project05')" style="grid-column: span 1;">
+        <img src="project_05_.png" alt="Project 05" class="project-thumb">
+        <div class="project-info">
+          <p class="project-num">Project 05</p>
+          <h3 class="project-name">The Recovery Paradox & Lego Zen</h3>
+          <p class="project-desc">An end-to-end design case study translating post-workout research into a modular hot & cold field massager.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer id="contact">
+    <div>
+      <h2>Let's make<br>something <em>beautiful.</em></h2>
+      <div style="margin-top:32px;">
+        <a href="mailto:Muskaanj.018@gmail.com" class="btn-primary" style="background:var(--pink-deep);border-color:var(--pink-deep);">Say Hello</a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:Muskaanj.018@gmail.com">Muskaanj.018@gmail.com</a>
+      <a href="https://linkedin.com/in/Muskaan-j018" target="_blank">linkedin.com/in/Muskaan-j018</a>
+      <a href="#">@Drafting_desks (Instagram)</a>
+      <a href="#">muskaan.jain.bdes2027@atlasskilltech.university</a>
+    </div>
+  </footer>
+  <div class="footer-bottom">© 2025 Muskaan Jain. All rights reserved.</div>
+
+</div><!-- /home page -->
+
+
+<!-- ========== SKILLS PAGE ========== -->
+<div id="skills-page" class="page">
+  <section style="padding:120px 5% 60px; background:var(--pink-light); text-align:center;">
+    <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
+    <p class="section-label">Toolkit</p>
+    <h1 class="section-title">Skills</h1>
+    <p style="color:var(--muted);max-width:500px;margin:0 auto;line-height:1.7;">From digital tools to physical prototyping — here's a look at how I bring ideas to life.</p>
+  </section>
+  <section style="background:var(--warm-white);padding:60px 5% 100px;text-align:center;">
+    <img src="skills.png" alt="Skills Overview" style="width:min(100%,800px);border-radius:20px;display:block;margin:0 auto;box-shadow:0 24px 70px rgba(224,122,160,0.2);">
+  </section>
+  <footer id="contact-skills" style="background:var(--dark);color:#fff;padding:60px 5%;text-align:center;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:2rem;">Ready to collaborate? <em style="color:var(--pink-mid);font-style:italic;">Let's talk.</em></h2>
+    <div style="margin-top:24px;"><a href="mailto:Muskaanj.018@gmail.com" class="btn-primary" style="background:var(--pink-deep);border-color:var(--pink-deep);">Get In Touch</a></div>
+  </footer>
+</div>
+
+
+<!-- ========== PROJECT 01 ========== -->
+<div id="project01" class="page">
+  <div class="project-hero">
+    <button class="back-btn" onclick="showPage('home'); scrollToSection('projects')">← All Projects</button>
+    <p class="section-label">Project 01 · Branding · Product Design</p>
+    <h1 class="section-title">Waou — Bespoke<br><em style="font-style:italic;color:var(--pink-deep)">Dog Accessory Brand</em></h1>
+    <p style="color:var(--muted);max-width:560px;margin:0 auto;line-height:1.75;">A luxury bespoke brand designed for dogs and their owners, blending emotional safety with high design and functionality.</p>
+    <img src="project_01.png" alt="Waou Project" class="project-full-img">
+  </div>
+  <section style="background:var(--warm-white);max-width:800px;margin:0 auto;padding:80px 5%;">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:24px;">The Brief</h3>
+    <p style="line-height:1.85;color:#444;margin-bottom:20px;">This project started from exploring brands and manufacturing types, coming across the term <em>bespoke</em>. Researching for a product niche where a luxury bespoke brand could be created — the moto was to create an emotional safety net for dogs while easing their owners' tasks too.</p>
+    <p style="line-height:1.85;color:#444;">Designing for and according to the dog but while keeping owner's needs and comfort in mind. The end goal: build a community and not just brand loyalty.</p>
+  </section>
+</div>
+
+
+<!-- ========== PROJECT 02 ========== -->
+<div id="project02" class="page">
+  <div class="project-hero">
+    <button class="back-btn" onclick="showPage('home'); scrollToSection('projects')">← All Projects</button>
+    <p class="section-label">Project 02 · Sustainability · Packaging</p>
+    <h1 class="section-title">Re-Kami —<br><em style="font-style:italic;color:var(--pink-deep)">Sustainable Packaging</em></h1>
+    <p style="color:var(--muted);max-width:560px;margin:0 auto;line-height:1.75;">A step towards sustainable packaging — handcrafted recycled paper packaging made to order.</p>
+    <img src="project_02_.png" alt="Re-Kami Project" class="project-full-img">
+  </div>
+  <section style="background:var(--warm-white);max-width:800px;margin:0 auto;padding:80px 5%;">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:24px;">The Vision</h3>
+    <p style="line-height:1.85;color:#444;margin-bottom:20px;">Re-Kami aims to redefine the fashion packaging landscape by seamlessly integrating experience and style with sustainability. Every piece of packaging not only enhances the product it holds but also contributes to a greener and more conscious world.</p>
+    <p style="line-height:1.85;color:#444;">Services include paper collection, recycled paper creation, custom packaging, and youth volunteer programs.</p>
+  </section>
+</div>
+
+
+<!-- ========== PROJECT 03 ========== -->
+<div id="project03" class="page">
+  <div class="project-hero">
+    <button class="back-btn" onclick="showPage('home'); scrollToSection('projects')">← All Projects</button>
+    <p class="section-label">Project 03 · UX · Product Design</p>
+    <h1 class="section-title">Kitsy First Aid Kits —<br><em style="font-style:italic;color:var(--pink-deep)">Redefining Emergency Readiness</em></h1>
+    <p style="color:var(--muted);max-width:560px;margin:0 auto;line-height:1.75;">A kid-friendly first aid kit designed for clarity, speed, and guided confidence in emergencies.</p>
+    <img src="project_03.png" alt="Kitsy Project" class="project-full-img">
+  </div>
+  <section style="background:var(--warm-white);max-width:800px;margin:0 auto;padding:80px 5%;">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:24px;">Problem Statement</h3>
+    <p style="line-height:1.85;color:#444;margin-bottom:20px;">Kids are unable to use basic first aid on their own without someone present to help them — resulting in small reactions turning worse, kid panicking, worried parents, and situations where expired medication causes greater problems.</p>
+    <p style="line-height:1.85;color:#444;">Users don't need more tools — they need clarity, speed, and guidance during stressful emergency situations.</p>
+  </section>
+</div>
+
+
+<!-- ========== PROJECT 04 ========== -->
+<div id="project04" class="page">
+  <div class="project-hero">
+    <button class="back-btn" onclick="showPage('home'); scrollToSection('projects')">← All Projects</button>
+    <p class="section-label">Project 04 · Research Paper · Inclusive Design</p>
+    <h1 class="section-title">Sitting & Spacing Issues —<br><em style="font-style:italic;color:var(--pink-deep)">Elderly People on Local Trains</em></h1>
+    <p style="color:var(--muted);max-width:560px;margin:0 auto;line-height:1.75;">A research paper identifying spatial and accessibility gaps faced by elderly passengers on local trains, proposing human-centered design interventions.</p>
+    <img src="project_04_.png" alt="Local Train Accessibility Project" class="project-full-img">
+  </div>
+  <section style="background:var(--warm-white);max-width:800px;margin:0 auto;padding:80px 5%;">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:24px;">Why This Topic?</h3>
+    <p style="line-height:1.85;color:#444;margin-bottom:20px;">Millions commute daily, but elderly passengers face severe accessibility gaps — high steps, lack of ergonomic seating, and overcrowded aisles create massive physical and emotional barriers. With an aging population, improving transport for elderly people can enhance their independence and quality of life.</p>
+    <p style="line-height:1.85;color:#444;margin-bottom:20px;">This project involved 6 weeks of research through observations, interviews, surveys, and talking to railway workers.</p>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:20px;margin-top:40px;">Proposed Ideas</h3>
+    <p style="line-height:1.85;color:#444;margin-bottom:12px;"><strong>L-Shaped Seating</strong> — Redesigned seating incorporating individual armrests to provide necessary leverage for standing up and significantly better lumbar support.</p>
+    <p style="line-height:1.85;color:#444;margin-bottom:12px;"><strong>Extended Handrails</strong> — Lowered handlebar extensions strategically placed to offer crucial grip and stability for passengers while the train is in rapid motion.</p>
+    <p style="line-height:1.85;color:#444;margin-bottom:12px;"><strong>Accessible Storage</strong> — Lowered and repositioned luggage racks to ensure elderly passengers can easily stow and retrieve personal belongings without physical strain.</p>
+    <p style="line-height:1.85;color:#444;"><strong>Lowered Handlebars</strong> — Low height hand bars at the top in the spaces between seats for standing.</p>
+  </section>
+</div>
+
+
+<!-- ========== PROJECT 05 ========== -->
+<div id="project05" class="page">
+  <div class="project-hero">
+    <button class="back-btn" onclick="showPage('home'); scrollToSection('projects')">← All Projects</button>
+    <p class="section-label">Project 05 · Research · Product Design</p>
+    <h1 class="section-title">The Recovery Paradox<br><em style="font-style:italic;color:var(--pink-deep)">& Lego Zen</em></h1>
+    <p style="color:var(--muted);max-width:560px;margin:0 auto;line-height:1.75;">An end-to-end HCD case study translating comprehensive post-workout qualitative research into a modular hot & cold field massager.</p>
+    <img src="project_05_.png" alt="Recovery Paradox Project" class="project-full-img">
+  </div>
+  <section style="background:var(--warm-white);max-width:800px;margin:0 auto;padding:80px 5%;">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:24px;">Introduction</h3>
+    <p style="line-height:1.85;color:#444;margin-bottom:20px;">This project addresses a critical contradiction in modern fitness — the Recovery Paradox. While biologically muscle growth and adaptation occur during rest, not during the workout itself, recovery is consistently the first activity people neglect when life gets busy.</p>
+    <p style="line-height:1.85;color:#444;">Lego Zen is a multi-sensory, highly adaptive therapy device synthesized directly from research insights — engineered with magnet block modules that configure instantly to provide targeted heat, cold, and percussion therapy wherever an athlete needs it.</p>
+  </section>
+</div>
+
+
+<style>
+  /* ── CURSOR ── */
+  .cursor-dot {
+    width: 8px; height: 8px; background: var(--pink-deep);
+    border-radius: 50%; position: fixed; pointer-events: none;
+    z-index: 9999; transform: translate(-50%,-50%);
+    transition: transform 0.1s;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--pink-deep);
+    border-radius: 50%; position: fixed; pointer-events: none;
+    z-index: 9998; transform: translate(-50%,-50%);
+    transition: left 0.12s ease, top 0.12s ease, width 0.25s, height 0.25s, opacity 0.25s;
+    opacity: 0.5;
+  }
+  body:hover .cursor-dot, body:hover .cursor-ring { opacity: 1; }
+  a:hover ~ .cursor-ring, button:hover ~ .cursor-ring { width: 56px; height: 56px; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .reveal-left {
+    opacity: 0; transform: translateX(-50px);
+    transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0; transform: translateX(50px);
+    transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  /* ── HERO ENTRANCE ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .hero-eyebrow  { animation: fadeUp 0.7s 0.1s both; }
+  .hero-title    { animation: fadeUp 0.8s 0.25s both; }
+  .hero-subtitle { animation: fadeUp 0.8s 0.4s both; }
+  .hero-cta      { animation: fadeUp 0.8s 0.55s both; }
+  .hero-website-img { animation: scaleIn 1s 0.7s both; }
+
+  /* ── FLOATING BLOBS in hero ── */
+  @keyframes float1 {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-18px) rotate(4deg); }
+  }
+  @keyframes float2 {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(14px) rotate(-3deg); }
+  }
+  .blob {
+    position: absolute; border-radius: 50%;
+    pointer-events: none; z-index: 0;
+    filter: blur(40px); opacity: 0.35;
+  }
+  .blob-1 {
+    width: 320px; height: 320px;
+    background: var(--pink-mid);
+    top: 10%; left: -60px;
+    animation: float1 7s ease-in-out infinite;
+  }
+  .blob-2 {
+    width: 220px; height: 220px;
+    background: var(--pink-deep);
+    bottom: 15%; right: -40px;
+    animation: float2 9s ease-in-out infinite;
+  }
+  .blob-3 {
+    width: 160px; height: 160px;
+    background: #f9d4e8;
+    top: 50%; left: 60%;
+    animation: float1 11s 2s ease-in-out infinite;
+  }
+
+  /* ── NAV UNDERLINE animate ── */
+  .nav-links a {
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -3px;
+    width: 0; height: 1.5px; background: var(--pink-deep);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── PROJECT CARD stagger ── */
+  .project-card {
+    transition: transform 0.35s cubic-bezier(.16,1,.3,1),
+                box-shadow 0.35s cubic-bezier(.16,1,.3,1) !important;
+  }
+
+  /* ── BUTTON pulse on hover ── */
+  .btn-primary, .btn-outline {
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after, .btn-outline::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .btn-primary:hover::after, .btn-outline:hover::after { transform: scaleX(1); }
+
+  /* ── PAGE TRANSITION ── */
+  .page-transition-overlay {
+    position: fixed; inset: 0; z-index: 9990;
+    background: var(--pink-light);
+    transform: scaleY(0); transform-origin: bottom;
+    pointer-events: none;
+  }
+  .page-transition-overlay.in  {
+    animation: curtainIn  0.4s cubic-bezier(.76,0,.24,1) forwards;
+  }
+  .page-transition-overlay.out {
+    animation: curtainOut 0.4s cubic-bezier(.76,0,.24,1) forwards;
+  }
+  @keyframes curtainIn  { from{transform:scaleY(0)} to{transform:scaleY(1)} }
+  @keyframes curtainOut { from{transform:scaleY(1)} to{transform:scaleY(0); transform-origin:top} }
+
+  /* ── SKILLS IMG subtle bob ── */
+  .skills-img {
+    animation: float2 8s ease-in-out infinite;
+  }
+
+  /* ── ABOUT badge bounce ── */
+  .about-badge {
+    animation: fadeUp 0.8s 1s both;
+  }
+
+  /* ── MARQUEE strip ── */
+  .marquee-wrap {
+    background: var(--pink-deep); overflow: hidden;
+    padding: 14px 0; white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: marquee 18s linear infinite;
+  }
+  .marquee-track span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: #fff; padding: 0 32px;
+  }
+  .marquee-track span.dot { padding: 0 8px; opacity: 0.5; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Page transition overlay -->
+<div class="page-transition-overlay" id="transitionOverlay"></div>
+
+<script>
+  /* ── CURSOR ── */
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    dot.style.left  = e.clientX + 'px';
+    dot.style.top   = e.clientY + 'px';
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '56px'; ring.style.height = '56px'; ring.style.opacity = '0.8';
+      dot.style.transform = 'translate(-50%,-50%) scale(1.8)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '36px'; ring.style.height = '36px'; ring.style.opacity = '0.5';
+      dot.style.transform = 'translate(-50%,-50%) scale(1)';
+    });
+  });
+
+  /* ── SCROLL REVEAL ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.dataset.delay || 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        revealObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  function initReveal() {
+    document.querySelectorAll('.page.active .reveal, .page.active .reveal-left, .page.active .reveal-right').forEach((el, i) => {
+      el.dataset.delay = (i % 5) * 80;
+      revealObserver.observe(el);
+    });
+  }
+
+  /* ── PROJECT CARD stagger on scroll ── */
+  function initCardStagger() {
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(50px)';
+      card.style.transition = `opacity 0.6s ${i * 0.1}s cubic-bezier(.16,1,.3,1), transform 0.6s ${i * 0.1}s cubic-bezier(.16,1,.3,1), box-shadow 0.35s`;
+    });
+    const cardObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          cardObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.project-card').forEach(c => cardObs.observe(c));
+  }
+
+  /* ── PAGE TRANSITION ── */
+  const overlay = document.getElementById('transitionOverlay');
+
+  function showPage(id) {
+    overlay.className = 'page-transition-overlay in';
+    setTimeout(() => {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo({ top: 0 });
+      }
+      overlay.className = 'page-transition-overlay out';
+      setTimeout(() => {
+        overlay.className = 'page-transition-overlay';
+        initReveal();
+        initCardStagger();
+      }, 420);
+    }, 380);
+  }
+
+  function scrollToSection(id) {
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 820);
+  }
+
+  /* ── SMOOTH ANCHOR LINKS ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  /* ── NAV hide/show on scroll ── */
+  let lastY = 0;
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > lastY && y > 80) {
+      nav.style.transform = 'translateY(-100%)';
+      nav.style.transition = 'transform 0.3s ease';
+    } else {
+      nav.style.transform = 'translateY(0)';
+    }
+    lastY = y;
+  });
+
+  /* ── INIT on load ── */
+  initReveal();
+  initCardStagger();
+</script>
+</body>
+</html>
